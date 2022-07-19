@@ -7,7 +7,7 @@ var romanToInt = function (s) {
 		else if (l === "C") return 100;
 		else if (l === "D") return 500;
 		else if (l === "M") return 1000;
-	};
+};
 
 	let num = 0;
 	const romanArray = s.split("");
