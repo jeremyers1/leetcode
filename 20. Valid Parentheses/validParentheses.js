@@ -37,12 +37,17 @@ let s = '(])';
 if (isValid(s)) console.log('Valid parentheses');
 else console.log('NOT valid parentheses');
 
-/*
-() = true
-()[]{} = true
-(] = false
-(]) = false
-()[(){()}] = true
-({})[({})] = true
-)(}{][ = false
+/* test cases
+"()" 
+"()[]{}" 
+"(]" 
+"(][)" 
+"]" 
+")(][}{" 
+"{[]}" 
+"[]{[]()}" 
+"({})[({})]" 
+"([{]})"
+"(){}}{"
+"(}})"
 */
