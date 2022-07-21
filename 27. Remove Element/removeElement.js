@@ -1,6 +1,8 @@
 var removeElement = function (nums, val) {
-  // nearly identical to 26. Remove Duplicates from Sorted Array
-	for (let i = nums.length - 1; i >= 0; i--) { 
+	// nearly identical to 26. Remove Duplicates from Sorted Array
+	for (let i = nums.length - 1; i >= 0; i--) {
+		// Upon checking other solutions, the for loop would work in positive iteration also,
+		// but then you have to go backwards 1 with i-- when a val is found, so my solution is easier to understand
 		if (nums[i] === val) {
 			nums.splice(i, 1);
 		}
