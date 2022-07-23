@@ -45,7 +45,7 @@ int mySqrt(int x) {
 
 int main() {
   int num = 4;
-  std::cout << sqrt(num);
+  std::cout << mySqrt(num);
 }
 
 /* Decimal is truncated...
