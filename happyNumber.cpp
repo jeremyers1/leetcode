@@ -5,11 +5,11 @@
 using namespace std;
 
 bool isHappy(int n) {
-  // every number comes back down to single digits eventaully.
+  // every number comes back down to single digit eventually.
   // Only 1 and 7 will result in a happy number, so all others are false.
   if (n == 1 || n == 7)
     return 1;
-  else if (n < 9)
+  else if (n <= 9)
     return 0;
 
   int sumSquares = 0;
