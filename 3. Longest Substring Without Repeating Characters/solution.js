@@ -37,6 +37,8 @@ var lengthOfLongestSubstring = function (s) {
 	return longest;
 	*/
 
+
+	/* MY WORKING SOLUTION
 	let testArr = [];
 	let arrlen = 0;
 	let answer = 0;
@@ -70,9 +72,38 @@ var lengthOfLongestSubstring = function (s) {
 		testArr = [];
 	}
 	return answer;
+*/
+
+
+	// OTHER SOLUTIONS FOUND ON LEETCODE
+	// USING SET() ... I WAS NOT AWARE OF SET() UNTIL SEEING THIS SOLUTION ... 
+
+	const set = new Set();
+	// let streak = 0, max = !!s.length, head;
+	// I don't understand why he sets max to a boolean(true) to begin with ... that's just confusing
+	// removing the !! sets max to s.length, which is too long, so why not just 0?
+	let streak = 0, max = 0, head;
+    for (let i = 0; i < s.length; i++) {
+        const c = s[i];
+        
+        while (set.has(c)) {
+            set.delete(s[head]);
+            head++;
+            streak--;
+        }
+
+        if (head === undefined) head = i;
+        set.add(c);
+        streak++;
+        if (streak > max) max = streak;
+        console.log(i, c, set, head, s[head], streak, max)
+    }
+    
+	return max;
+	
 };
 
-let str = 'abcdebfg';
+let str = 'dvdf';
 console.log(lengthOfLongestSubstring(str));
 
 /*
