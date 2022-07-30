@@ -50,6 +50,7 @@ var longestPalindrome = function (s) {
   */
 
 	// NEW ATTEMPT - worked, but REALLY REALLY SLOW... my solution took 5 seconds on Leetcode
+	/*
 	let answer = '';
 	let ansLength = 0;
 	// reverse the original string
@@ -79,6 +80,35 @@ var longestPalindrome = function (s) {
 		}
 	}
 	return answer;
+  */
+
+	/* Here is a VERY good solution from someone else ...
+  They start with the first character and check if it is a palindrome (it is), so they go BOTH left and right to see if it is a palindrome
+  There is no left, so they go to next character. It is a palindrom (it is), so they go BOTH left and right to see if it is a palindrome
+  PROBLEM THOUGH: This only works for odd-numbered palindromes, like aba. What about for an even numbered palindrom like abba? 
+  So he calculates it BOTH ways ... first with left first going -1 and right going +1 ... and then with left staying put initally while right goes +1
+*/
+	if (s.length == 1) return s;
+	let res = s[0],
+		left,
+		right;
+	for (let i = 0; i < s.length; i++) {
+		(left = i - 1), (right = i + 1);
+		while (left >= 0 && right < s.length) {
+			if (s[left] != s[right]) break;
+			if (right + 1 - left > res.length) res = s.slice(left, right + 1);
+			left--;
+			right++;
+		}
+		(left = i), (right = i + 1);
+		while (left >= 0 && right < s.length) {
+			if (s[left] != s[right]) break;
+			if (right + 1 - left > res.length) res = s.slice(left, right + 1);
+			left--;
+			right++;
+		}
+	}
+	return res;
 };
 
 const str = 'abba';
