@@ -8,20 +8,20 @@ var searchInsert = function (nums, target) {
 	else {
 		return nums.findIndex(num => num > target);
 	} */
-	let first = 0;
-	let last = nums.length - 1;
+	let left = 0;
+	let right = nums.length - 1;
 	let mid;
 
-	while (first <= last) {
-		mid = Math.floor((first + last) / 2);
+	while (left <= right) {
+		mid = Math.floor((left + right) / 2);
 		if (nums[mid] === target) return mid;
 		else if (nums[mid] > target) {
-			last = mid - 1;
+			right = mid - 1;
 		} else {
-			first = mid + 1;
+			left = mid + 1;
 		}
 	}
-	return first;
+	return left;
 };
 
 const numbers = [1, 3];
