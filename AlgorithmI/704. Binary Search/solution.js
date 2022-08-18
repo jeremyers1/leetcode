@@ -2,7 +2,7 @@ var search = function (nums, target) {
 	// return nums.indexOf(target);
 	// the above obvsiously works, but since it's called binary search, I doubt this is what they want ...
 
-	//   ITERATIVE Approach
+	// BINARY Search Approach
 	let low = 0;
 	let high = nums.length - 1;
 
