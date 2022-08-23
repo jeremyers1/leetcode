@@ -1,5 +1,5 @@
 var moveZeroes = function (nums) {
-  let end = nums.length;
+	/*   let end = nums.length;
   for (let i = 0; i < end;) {
     if (nums[i] === 0) {
       nums.splice(i, 1);
@@ -10,10 +10,26 @@ var moveZeroes = function (nums) {
       i++;
     }
   }
-  return nums;
+  return nums; */
+
+	// Alternative Approach
+	let nonZero = 0;
+	// filling in non zero characters
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] != 0) {
+			nums[nonZero] = nums[i];
+			nonZero += 1;
+		}
+	}
+
+	// filling in zeroes
+	for (let i = nonZero; i < nums.length; i++) {
+		nums[i] = 0;
+	}
+	return nums;
 };
 
-const numbers = [0, 0,1];
+const numbers = [0, 0, 1];
 console.log(moveZeroes(numbers));
 
 /* 
