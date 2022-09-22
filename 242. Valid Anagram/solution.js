@@ -8,7 +8,7 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-	// Works, but very slow: Two splits with O(N), two sorts with O(N log N), then a loop with O(N)
+	// Works, but very slow: Two splits with O(N), two sorts with O(N log N), then a loop with O(N) = O(5N 2(log N)) = O(N log N)
 	if (s.length != t.length) return false;
 
 	/* 	let sortedS = s.split('').sort((a, b) => {
@@ -28,7 +28,8 @@ var isAnagram = function (s, t) {
 
 	// Hint #122 says a hashmap will help. How? A hashmap must have unique keys, so I can't use the letters for keys
 	// found a solution from someone who used one. They don't duplicate the keys. They just update the value for each letter key.
-	const sObj = {};
+	// Big O: Uses two for loops to set and compre, so O(2N) = O(N)
+	/* const sObj = {};
 	const tObj = {};
 	for (let i = 0; i < s.length; i++) {
 		sObj[s[i]] = sObj[s[i]] + 1 || 1;
@@ -38,30 +39,37 @@ var isAnagram = function (s, t) {
 	for (key in sObj) {
 		if (sObj[key] !== tObj[key]) return false;
 	}
-	return true;
+	return true; */
 
-	// Can I duplicate using a map()? no, I don't understand Map() well enough yet.
-	// Even if I could, it's terribly unreadable with all the .has, set, and .get
-	/* 	const sObj = new Map();
+	// Can I duplicate using a map()? yes, but more difficult to read?
+
+	const sObj = new Map();
 	const tObj = new Map();
 	for (let i = 0; i < s.length; i++) {
-		if (sObj.has([s[i]])) {
-			sObj.set([s[i]], sObj.get([s[i]]) + 1);
+		/* if (sObj.has(s[i])) {
+			sObj.set(s[i], sObj.get(s[i]) + 1);
 		} else {
-			sObj.set([s[i]], 1);
+			sObj.set(s[i], 1);
 		}
+		
+		if (tObj.has(t[i])) {
+			tObj.set(t[i], tObj.get(t[i]) + 1);
+		} else {
+			tObj.set(t[i], 1);
+		}
+		*/
 
-		if (tObj.has([t[i]])) {
-			tObj.set([t[i]], tObj.get([t[i]]) + 1);
-		} else {
-			tObj.set([t[i]], 1);
-		}
-		console.log(sObj, tObj);
+		/* using ternary 
+		sObj.has(s[i]) ? sObj.set(s[i], sObj.get(s[i]) + 1) : sObj.set(s[i], 1);
+		tObj.has(t[i]) ? tObj.set(t[i], tObj.get(t[i]) + 1) : tObj.set(t[i], 1); */
+
+		sObj.set(s[i], sObj.get(s[i]) + 1 || 1);
+		tObj.set(t[i], tObj.get(t[i]) + 1 || 1);
 	}
-	for (key in sObj) {
-		if (sObj[key] !== tObj[key]) return false;
+	for (const key of sObj.keys()) {
+		if (sObj.get(key) !== tObj.get(key)) return false;
 	}
-	return true; */
+	return true;
 };
 
 stringA = 'anagram';
