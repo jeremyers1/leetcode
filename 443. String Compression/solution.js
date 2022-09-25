@@ -18,7 +18,7 @@
  */
 
 function stringCompression(chars) {
-	let strObj = {};
+	/* 	let strObj = {};
 	for (let i = 0; i < chars.length; i++) {
 		strObj[chars[i]] = strObj[chars[i]] + 1 || 1;
 	}
@@ -34,7 +34,54 @@ function stringCompression(chars) {
 	console.log(str);
 	chars = str.split('');
 	console.log(chars);
-	return str.length;
+	return str.length; */
+
+	// New attempt.
+	// once again, works perfectly here, but is not accepted by LeetCode
+	let s = '';
+	for (let i = 0; i < chars.length; i++) {
+		s += chars[i];
+		if (chars[i + 1]) {
+			if (chars[i] === chars[i + 1]) {
+				i++;
+				let count = 2;
+				while (chars[i] === chars[i + 1] && i < chars.length) {
+					count++;
+					i++;
+				}
+				s += count;
+			}
+		}
+	}
+	// mine was:
+	// chars = s.split('');
+	chars.splice(0, chars.length, ...s.split('')); // used from other solution below. AND I added the proper return (which wasn't needed by leetcode... )
+	return chars.length;
+
+	// This was someone else's solution:
+	// Very similar to my second approach above, except for the method used to re-create the chars array (I just assigned using split(). They used splice)
+	// Also, they didn't return anything???? But it was accepted????
+	/* 	let out = '';
+	let count = 1;
+
+	if (chars.length > 1) {
+		for (let i = 0; i < chars.length; i++) {
+			let curr = chars[i];
+			let next = chars[i + 1];
+			if (curr === next) {
+				count++;
+			} else {
+				if (count > 1) {
+					out += curr + String(count);
+					count = 1;
+				} else {
+					out += curr;
+				}
+			}
+		}
+
+		chars.splice(0, chars.length, ...out.split(''));
+	} */
 }
 
 const charArray = ['a', 'a', 'b', 'b', 'c', 'c', 'c'];
