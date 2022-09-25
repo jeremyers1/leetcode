@@ -6,10 +6,20 @@
  * @return {boolean}
  */
 var containsDuplicate = function (nums) {
-	/* 	const Found = new Map();
+	// in my tests, this one was the fastest and uses the least space
+	const Found = new Map();
 	Found.set(nums[0], true);
 	for (let i = 1; i < nums.length; i++) {
 		if (!Found.has(nums[i])) Found.set(nums[i], true);
+		else return true;
+	}
+	return false;
+
+	// using object
+	/* 	const Found = {};
+	Found[nums[0]] = true;
+	for (let i = 1; i < nums.length; i++) {
+		if (!Found[nums[i]]) Found[nums[i]] = true;
 		else return true;
 	}
 	return false; */
@@ -24,7 +34,7 @@ var containsDuplicate = function (nums) {
 	return false; */
 
 	// Another interesting approach from someone else, but slower than my map approach above
-	return nums.length >= 2 && new Set(nums).size !== nums.length;
+	//	return nums.length >= 2 && new Set(nums).size !== nums.length;
 };
 
 const numArray = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2];
