@@ -8,18 +8,16 @@
 function isPalindromPermutation(s) {
 	// spaces don't matter, so strip out or ignore spaces
 	let numOccurences = {};
-	let count = 0;
 	for (let i = 0; i < s.length; i++) {
 		if (s[i] != ' ') {
-			count++;
 			numOccurences[s[i]] = numOccurences[s[i]] + 1 || 1;
 		}
 	}
 
-	console.log(count, numOccurences);
+	console.log(numOccurences);
 
 	// in even-length string, all letters will have a even number of occurences; in odd-length, only one occurence will be odd
-	if (count % 2 === 0) {
+	/* 	if (count % 2 === 0) {
 		console.log('even');
 		for (let key in numOccurences) {
 			if (numOccurences[key] % 2 != 0) {
@@ -35,7 +33,14 @@ function isPalindromPermutation(s) {
 				if (oneOdd > 1) return false;
 			}
 		}
+	} */
+
+	let count = 0;
+	for (let v of Object.values(numOccurences)) {
+		if (v % 2 === 1) count++;
+		if (count > 1) return false;
 	}
+
 	return true;
 }
 
