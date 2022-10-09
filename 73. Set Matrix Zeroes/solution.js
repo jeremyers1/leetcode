@@ -2,13 +2,13 @@
  * Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
  * You must do it in place.
  * Time: My solution is slow, but most other submitted solutions used extra space with additional arrays, sets, or maps. Mine is "in place" as required.
- * So, my time is: O(2R) + O(2C) + O(3RC) = O(5RC) = O(RC) = R(N)
+ * So, my time is: O(2R) + O(2C) + O(3RC) = O(5RC) = O(RC) = O(N)
  * CTCI1.8
  */
 
 var setZeroes = function (matrix) {
 	// first just check if row and column headers have a 0 (avoids turning ALL cells to 0)
-	let rowHeaderZero = false;
+	/* 	let rowHeaderZero = false;
 	let colHeaderZero = false;
 	for (let r = 0; r < matrix.length; r++) {
 		if (matrix[r][0] === 0) {
@@ -62,7 +62,36 @@ var setZeroes = function (matrix) {
 		for (let c = 0; c < matrix[0].length; c++) {
 			matrix[0][c] = 0;
 		}
+	} 
+	
+	return matrix;
+	
+	*/
+
+	// Alternative Solution
+	const rows = new Set();
+	const cols = new Set();
+	const colLen = matrix.length;
+	const rowLen = matrix[0].length;
+
+	for (let i = 0; i < colLen; i++) {
+		for (let j = 0; j < rowLen; j++) {
+			if (matrix[i][j] === 0) {
+				rows.add(i);
+				cols.add(j);
+			}
+		}
 	}
+
+	rows.forEach(row => {
+		matrix[row] = new Array(rowLen.fill(0));
+	});
+
+	cols.forEach(col => {
+		for (let i = 0; i < colLen; i++) {
+			matrix[i][col] = 0;
+		}
+	});
 
 	return matrix;
 };
@@ -75,6 +104,7 @@ const mat = [
 console.log(setZeroes(mat));
 
 /*
+[[1],[0]] = [[0],[0]]
 [[1,1,1],[1,0,1],[1,1,1]] = [[1,0,1],[0,0,0],[1,0,1]]
 [[0,1,2,0],[3,4,5,2],[1,3,1,5]] = [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 [[0,1,2,0],[3,4,5,2],[1,3,1,5]] = [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
