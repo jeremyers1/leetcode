@@ -38,6 +38,7 @@ var rotate = function (matrix) {
   So, we do col2 transposition first
   Then we do col3 swap (a with a', etc) while avoiding middle row(s)
   */
+	console.log(matrix);
 	let N = matrix.length;
 	let count = 0;
 	//Do transposition first
@@ -52,15 +53,23 @@ var rotate = function (matrix) {
 	}
 
 	//Then swap while avoiding middle row(s)
-	for (let i = 0; i < N; i++) {
+	/* 	for (let i = 0; i < N; i++) {
 		// only do half to avoid middle columns
 		for (let j = 0; j < Math.floor(N / 2); j++) {
 			let temp = matrix[i][j];
 			matrix[i][j] = matrix[i][N - 1 - j];
 			matrix[i][N - 1 - j] = temp;
 			count++;
-		}
+		} */
+
+	console.log(matrix);
+	// BETTER: reverse each row:
+	for (let i = 0; i < N; i++) {
+		// only do half to avoid middle columns
+		matrix[i].reverse();
+		count++;
 	}
+
 	console.log(count);
 	return matrix;
 };
