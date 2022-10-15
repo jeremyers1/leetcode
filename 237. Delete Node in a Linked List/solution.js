@@ -9,7 +9,7 @@
  * All the values before node should be in the same order.
  * All the values after node should be in the same order.
  *
- * CTCI2.3
+ * CTCI2.3: 
  */
 
 /**
