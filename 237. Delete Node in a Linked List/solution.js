@@ -42,21 +42,25 @@ function printList(head) {
 }
 
 function deleteNode(node) {
-	let current = a;
+	/* 	let current = a;
 	let previous = null;
 	while (current && current.data != node) {
 		previous = current;
 		current = current.next;
 	}
-	previous.next = current.next;
+	previous.next = current.next; */
+
+	node.data = node.next.data;
+	node.next = node.next.next;
 }
 
 let d = new ListNode(9);
 let c = new ListNode(1, d);
 let b = new ListNode(5, c);
 let a = new ListNode(4, b);
+
 printList(a);
-deleteNode(5);
+deleteNode(b);
 printList(a);
 
 /**
