@@ -17,7 +17,7 @@
  */
 
 /* Possible Approaches
-1. Use an inremental hashmap and then check to make sure all items (except the center on odd length lists) are even
+1. Use an incremental hashmap and then check to make sure all items (except the center on odd length lists) are even ... EXCEPT ... aabbcc would return true ... so this won't work
 2. Put items into a queue/stack array - then pop() end and shift() front as long as they agree. 
 3. Convert list to Doubly-linked list, then start at front and end and compare toward middle
 4. Use two pointers (fast and slow) to find center of list ... then work from start and end toward middle (but how to get .prev on second half of list?)
@@ -109,23 +109,22 @@ function isPalindrome(head) {
 	}
 	return string1 === string2;
 
-	/* Approach #4
+	/* Approach #4 - This is the only one that uses O(n) time and O(1) additional space
   
   let slow = head;
 	let fast = head;
-	let prev;
-	let temp;
 	while (fast && fast.next) {
 		slow = slow.next;
 		fast = fast.next.next;
 	}
 
 	// use while loop to point all .next to the previous list element
-	prev = slow;
+	let prev = slow;
+	let temp;
 	slow = slow.next;
 	prev.next = null;
 	while (slow) {
-		temp = slow.next; // set current .next into temp to use for proggessing to next element
+		temp = slow.next; // set current .next into temp to use for progessing to next element
 		slow.next = prev; // now set current .next to previous element
 		prev = slow; // and set previous to current for use on next loop
 		slow = temp; // now progress to next element ... essentially this is slow = slow.next
